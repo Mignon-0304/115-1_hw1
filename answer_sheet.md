@@ -48,21 +48,26 @@ Big-O notation is not required in this section.
 
 ### 2.1 `CircularQueue`
 
-- When timing starts, what are `size()` and `capacity()`? [fill in]
+- When timing starts, what are `size()` and `capacity()`?
+The `size()` and `capacity()` are both `n`, which represents the elements stored in `sizes[]`. During the whole opteration, it has been 2^9, 2^12, and 2^15.
 - Each round runs `dequeue()` first and then `enqueue()`. How many existing elements does each of the two operations move? [fill in]
-- Why does no capacity growth occur during the timed phase? [fill in]
+The existing elements are never moved. The `front_` and `rear_` are moved, but not the elements themselves.
+- Why does no capacity growth occur during the timed phase?
+Because there is no need. `dequeue()` leaves one space unused, and `enqueue()` uses that space. Minus 1 and plus 1, so it never runs out of spaces.
 
 ### 2.2 `NaiveShiftQueue`
 
-- With `n` elements in the queue, roughly how many elements does each `dequeue()` shift forward? [fill in]
-- After `n` consecutive rounds, roughly how many element moves are performed in total? [fill in]
+- With `n` elements in the queue, roughly how many elements does each `dequeue()` shift forward?
+n-1
+- After `n` consecutive rounds, roughly how many element moves are performed in total?
+n-1 + n-2 + n-3 + ... + 1 + 0
 
 ### 2.3 Growth when the input size increases
 
 | Implementation | When `n` grows 8 times, the number of basic operations grows roughly how many times? | Reasoning |
 |---|---:|---|
-| `CircularQueue` |  |  |
-| `NaiveShiftQueue` |  |  |
+| `CircularQueue` | 8 | every `enqueue()` and `dequeue()` only requires one basic operation |
+| `NaiveShiftQueue` | 64 | `enqueue()` only requires one basic operation, but `dequeue()` traversels the whole queue, so the whole `measure()` requires roughly square of the size of the queue. |
 
 ---
 
