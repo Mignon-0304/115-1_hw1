@@ -85,4 +85,4 @@ n-1 + n-2 + n-3 + ... + 1 + 0
 
 Compare the measured growth ratios with the ratios you derived from operation counts in the previous section. Do the measurements follow the same growth trend? If they do not match exactly, give one reasonable explanation. You may briefly mention fixed costs, memory access efficiency, or compiler optimisation; you do not need to discuss hardware details in depth.
 
-[fill in]
+The ratios of both `CircularQueue` and `NaiveShiftQueue` are less than expected. The reason includes the fixed costs like initializing the variables which make the calculated ratio not obvious when `n` is small. Also the CPU may spend more resources on the operation and therefore increase the efficiency when `n` is bigger.
