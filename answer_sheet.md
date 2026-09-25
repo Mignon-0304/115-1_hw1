@@ -67,7 +67,7 @@ n-1 + n-2 + n-3 + ... + 1 + 0
 | Implementation | When `n` grows 8 times, the number of basic operations grows roughly how many times? | Reasoning |
 |---|---:|---|
 | `CircularQueue` | 8 | every `enqueue()` and `dequeue()` only requires one basic operation |
-| `NaiveShiftQueue` | 64 | `enqueue()` only requires one basic operation, but `dequeue()` traversels the whole queue, so the whole `measure()` requires roughly square of the size of the queue. |
+| `NaiveShiftQueue` | 64 | `enqueue()` only requires one basic operation, but `dequeue()` traverses the whole queue, so the whole `measure()` requires roughly the square of the queue's size. |
 
 ---
 
@@ -77,9 +77,9 @@ n-1 + n-2 + n-3 + ... + 1 + 0
 
 | `n` | `CircularQueue` median (ms) | Ratio to previous size | `NaiveShiftQueue` median (ms) | Ratio to previous size |
 |---:|---:|---:|---:|---:|
-| $2^9$ |  | n/a |  | n/a |
-| $2^{12}$ |  |  |  |  |
-| $2^{15}$ |  |  |  |  |
+| $2^9$ | 0.005 | n/a | 0.388 | n/a |
+| $2^{12}$ | 0.040 | 8 | 18.270 | 47.088 |
+| $2^{15}$ | 0.186 | 4.65 | 860.177 | 47.081 |
 
 ### 3.2 Comparing operation counts with measured times
 
