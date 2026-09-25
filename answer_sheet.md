@@ -77,12 +77,13 @@ n-1 + n-1 + n-1 + ... = n(n-1)
 
 | `n` | `CircularQueue` median (ms) | Ratio to previous size | `NaiveShiftQueue` median (ms) | Ratio to previous size |
 |---:|---:|---:|---:|---:|
-| $2^9$ | 0.005 | n/a | 0.388 | n/a |
-| $2^{12}$ | 0.040 | 8 | 18.270 | 47.088 |
-| $2^{15}$ | 0.186 | 4.65 | 860.177 | 47.081 |
+| $2^9$ | 0.008 | n/a | 0.647 | n/a |
+| $2^{12}$ | 0.066 | 8.25 | 19.248 | 29.750 |
+| $2^{15}$ | 0.214 | 3.242 | 864.558 | 44.917 |
 
 ### 3.2 Comparing operation counts with measured times
 
 Compare the measured growth ratios with the ratios you derived from operation counts in the previous section. Do the measurements follow the same growth trend? If they do not match exactly, give one reasonable explanation. You may briefly mention fixed costs, memory access efficiency, or compiler optimisation; you do not need to discuss hardware details in depth.
 
-The ratios of both `CircularQueue` and `NaiveShiftQueue` are less than expected. The reason includes the fixed costs like initializing the variables which make the calculated ratio not obvious when `n` is small. Also the CPU may spend more resources on the operation and therefore increase the efficiency when `n` is bigger.
+The ratio of `CircularQueue`: $2^{12}$/$2^9$ is very close to 8, but that of `CircularQueue`: $2^{15}$/$2^{12}$ is less than expected. That might be because the CPU spent more resources on the operation when `n` got bigger and therefore increased the efficiency.
+The ratio of both `NaiveShiftQueue`: $2^{12}$/$2^9$ and $2^{15}$/$2^{12}$ are less than expected. That might have resulted from the fixed costs like initializing the variables, which make the calculated ratio not showing obviously when n is not very big.

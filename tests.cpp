@@ -69,15 +69,21 @@ void test_randomized_differential() {
     // 4. After each step compare size() and empty(), and compare front() when non-empty.
     CircularQueue myQ(1000);
     std::queue<int> stdQ;
-    std::srand(kSeed);
-    for(int i=0;i<2000;i++){
-        int randomNum = rand();
+    std::mt19937 gen(kSeed);
+    int counter = 2000;
+    while(counter){
+        std::uniform_int_distribution<int> distrib;
+        int randomNum = distrib(gen);
         if(randomNum%2==0){
             myQ.enqueue(randomNum);
             stdQ.push(randomNum);
+            counter--;
         } else {
-            if(!myQ.empty()) myQ.dequeue();
-            if(!stdQ.empty()) stdQ.pop();
+            if(!myQ.empty() && !stdQ.empty()){
+                myQ.dequeue();
+                stdQ.pop();
+                counter--;
+            }
         }
         check(myQ.size()==stdQ.size(),"CircularQueue not functioning like std::queue (size not match)");
         if(!myQ.empty() && !stdQ.empty()) check(myQ.front()==stdQ.front(), "CircularQueue not functioning like std::queue (front not match)");

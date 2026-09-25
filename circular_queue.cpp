@@ -1,5 +1,4 @@
 #include "circular_queue.hpp"
-#include <iostream>
 
 #include <stdexcept>
 
@@ -7,7 +6,7 @@ CircularQueue::CircularQueue(std::size_t initial_capacity)
     : data_(nullptr), capacity_(0), size_(0), front_(0), rear_(0) {
     // TODO 1: If initial_capacity is 0, throw std::invalid_argument;
     //         otherwise allocate the dynamic array and initialise the members.
-    if(initial_capacity<=0) throw std::invalid_argument("無效的初始值");
+    if(initial_capacity==0) throw std::invalid_argument("無效的初始值");
     else{
         data_ = new int[initial_capacity];
         capacity_ = initial_capacity;
@@ -59,7 +58,7 @@ void CircularQueue::grow() {
 
 void CircularQueue::enqueue(int value) {
     // TODO 8: Grow the capacity first if necessary, then append value at the rear.
-    if(size_!=0 && (rear_==front_ || rear_==capacity_)) grow();
+    if(size_!=0 && rear_==front_) grow();
     data_[rear_] = value;
     rear_ = (rear_ + 1) % capacity_;
     size_++;
