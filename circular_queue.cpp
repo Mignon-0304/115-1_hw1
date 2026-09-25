@@ -49,10 +49,7 @@ void CircularQueue::grow() {
     // 2. Copy the elements in their logical order.
     // 3. Release the old array and update front_, rear_ and capacity_.
     int* newData = new int[2 * capacity_];
-    for(size_t i=0 ; i<capacity_ ; i++){
-        newData[i] = i + front_ >= capacity_ ? data_[i+front_-capacity_] : data_[i+front_];
-        newData[i] = data_[i];
-    }
+    for(size_t i=0 ; i<capacity_ ; i++) newData[i] = i + front_ >= capacity_ ? data_[i+front_-capacity_] : data_[i+front_];
     capacity_ *= 2;
     front_ = 0;
     rear_ = size_;

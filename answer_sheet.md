@@ -29,7 +29,7 @@ myQ.enqueue(4);
 | .enqueue(2) | 0 | 0 | 2 | (1, 2) | (1, 2) |
 | .dequeue() | 1 | 0 | 1 | (2,_) | (1, 2) |
 | .enqueue(3) | 1 | 1 | 2 | (2, 3) | (3, 2) |
-| .enqueue(4) | 0 | 0 | 3 | (3, 2, 4, _) | (3, 2, 4, _) |
+| .enqueue(4) | 0 | 3 | 3 | (3, 2, 4, _) | (3, 2, 4, _) |
 
 ### 1.3 Correct versus faulty result
 
@@ -60,7 +60,7 @@ Because there is no need. `dequeue()` leaves one space unused, and `enqueue()` u
 - With `n` elements in the queue, roughly how many elements does each `dequeue()` shift forward?
 n-1
 - After `n` consecutive rounds, roughly how many element moves are performed in total?
-n-1 + n-2 + n-3 + ... + 1 + 0
+n-1 + n-1 + n-1 + ... = n(n-1)
 
 ### 2.3 Growth when the input size increases
 
