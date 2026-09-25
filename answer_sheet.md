@@ -12,32 +12,33 @@ At most 2 pages after conversion to PDF. For sections 2 and 3, the explanatory t
 
 The initial capacity is 2. Fill in at most 5 `enqueue()`/`dequeue()` operations:
 
-```text
+```CPP
 CircularQueue myQ(2);
 myQ.enqueue(1);
 myQ.enqueue(2);
 myQ.dequeue();
 myQ.enqueue(3);
+myQ.enqueue(4);
 ```
 
 ### 1.2 Step-by-step state
 
 | Operation | `front_` | `rear_` | `size_` | Logical order | Actual array layout |
 |---|---:|---:|---:|---|---|
-| [fill in] |  |  |  |  |  |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
+| .enqueue(1) | 0 | 1 | 1 | (1,_) | (1,_) |
+| .enqueue(2) | 0 | 0 | 2 | (1, 2) | (1, 2) |
+| .dequeue() | 1 | 0 | 1 | (2,_) | (1, 2) |
+| .enqueue(3) | 1 | 1 | 2 | (2, 3) | (3, 2) |
+| .enqueue(4) | 0 | 0 | 3 | (3, 2, 4, _) | (3, 2, 4, _) |
 
 ### 1.3 Correct versus faulty result
 
-- Elements removed in order by the correct implementation: [fill in]
-- Elements removed in order by the faulty implementation: [fill in]
+- Elements removed in order by the correct implementation: 2->3->4
+- Elements removed in order by the faulty implementation: 3->2->4
 
 ### 1.4 Which invariant is broken
 
-[fill in]
+the First-In First-Out principle.
 
 ---
 
